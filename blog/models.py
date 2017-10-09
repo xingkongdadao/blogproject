@@ -19,6 +19,9 @@ class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         db_table = "category"
 
@@ -30,6 +33,9 @@ class Tag(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid1, editable=False)
     name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         db_table = "tag"
@@ -71,6 +77,9 @@ class Post(models.Model):
     # 这里我们通过 ForeignKey 把文章和 User 关联了起来。
     # 因为我们规定一篇文章只能有一个作者，而一个作者可能会写多篇文章，因此这是一对多的关联关系，和 Category 类似。
     author = models.ForeignKey(User)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         db_table = "post"
